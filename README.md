@@ -65,10 +65,6 @@ A simple way to run the workshop:
 4. Roleplay realistic scenarios.
 5. Review and annotate sample conversations together.
 
-## Design Direction
-
-This version uses a modern, lightweight interface inspired by contemporary AI product UI patterns, while keeping the structure practical and workshop-friendly.
-
 ## Credits
 
 **Yuha Kim** · AI Product Designer  
