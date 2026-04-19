@@ -12,13 +12,13 @@ The project is currently published as a single static HTML file, making it easy 
 
 ## What's Inside
 
-The worksheet pack includes five core exercises:
-
-1. Agent Behavior Spec
-2. Clarification Question Priority Map
-3. Fallback and Escalation Matrix
-4. Roleplay Deck
-5. Annotated Conversation Review
+| # | Worksheet | Purpose |
+| --- | --- | --- |
+| 01 | **Agent Behavior Spec** | Define who the agent is, what it can do, what it must never do, and when to escalate |
+| 02 | **Clarification Question Priority Map** | For each intent type, define the single most critical question to ask first |
+| 03 | **Fallback & Escalation Matrix** | Map every failure state to a designed agent response and recovery path |
+| 04 | **Roleplay Scenario Deck** | Simulate the interaction from both sides before any code is written |
+| 05 | **Annotated Conversation Walkthrough** | Label every design decision in a real or hypothetical conversation |
 
 These worksheets are designed to help teams define the basics first:
 
@@ -71,5 +71,5 @@ This version uses a modern, lightweight interface inspired by contemporary AI pr
 
 ## Credits
 
-Created by Yuha Kim  
-AI Product Designer @ Salesforce
+**Yuha Kim** · AI Product Designer  
+[yuha.work](https://yuha.work) · [linkedin.com/in/yuha-kim](https://linkedin.com/in/yuha-kim)
