@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AX Design Worksheet Pack — Yuha Kim</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #f4f7fb;
+    --bg2: #ffffff;
+    --bg3: #eef3f8;
+    --card: rgba(255, 255, 255, 0.82);
+    --card-strong: rgba(255, 255, 255, 0.92);
+    --pill: rgba(15, 23, 42, 0.04);
+    --white: #101828;
+    --text: #334155;
+    --muted: #64748b;
+    --soft: #94a3b8;
+    --lavender: #334155;
+    --dim: #64748b;
+    --dimmer: #94a3b8;
+    --line: rgba(15, 23, 42, 0.08);
+    --line-strong: rgba(15, 23, 42, 0.16);
+    --accent: #10a37f;
+    --accent-soft: #0f8f70;
+    --accent-faint: rgba(16, 163, 127, 0.1);
+    --purple: #10a37f;
+    --purple-light: #10a37f;
+    --amber: #d97706;
+    --coral: #e11d48;
+    --teal: #0284c7;
+    --green: #15803d;
+    --shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
+    --radius: 18px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background:
+      radial-gradient(circle at top, rgba(16, 163, 127, 0.1), transparent 28%),
+      radial-gradient(circle at 85% 12%, rgba(2, 132, 199, 0.09), transparent 24%),
+      linear-gradient(180deg, #fbfdff 0%, #f4f7fb 48%, #eef3f8 100%);
+    color: var(--white);
+    font-family: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+    padding: 28px 0 48px;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.45), transparent 80%);
+  }
+
+  .hero,
+  .content,
+  .footer,
+  .nav-inner {
+    max-width: 1120px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero {
+    background:
+      linear-gradient(135deg, rgba(16, 163, 127, 0.12), rgba(2, 132, 199, 0.06) 45%, transparent 72%),
+      var(--card-strong);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow);
+    border-radius: 28px;
+    padding: 72px 56px 56px;
+    backdrop-filter: blur(18px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: auto -80px -90px auto;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(16, 163, 127, 0.14), transparent 70%);
+    pointer-events: none;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(15, 23, 42, 0.04);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    color: var(--text);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    padding: 8px 14px;
+    border-radius: 999px;
+    margin-bottom: 28px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.8rem, 6vw, 4.6rem);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    color: var(--white);
+    line-height: 0.98;
+    max-width: 740px;
+    margin-bottom: 18px;
+  }
+
+  .hero p {
+    color: var(--text);
+    font-size: 17px;
+    max-width: 640px;
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
+
+  .hero .author {
+    margin-top: 34px;
+    color: var(--muted);
+    font-size: 13px;
+    border-top: 1px solid var(--line);
+    padding-top: 20px;
+    max-width: 680px;
+  }
+
+  .hero .author strong { color: var(--white); }
+
+  .nav {
+    position: sticky;
+    top: 18px;
+    z-index: 100;
+    padding: 16px 0 0;
+    background: transparent;
+  }
+
+  .nav-inner {
+    padding: 10px 12px;
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 10px 32px rgba(15, 23, 42, 0.08);
+  }
+
+  .nav a {
+    display: block;
+    padding: 11px 14px;
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    border-radius: 12px;
+    transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  }
+
+  .nav a:hover {
+    color: var(--white);
+    background: rgba(15, 23, 42, 0.05);
+    transform: translateY(-1px);
+  }
+
+  .content {
+    padding: 18px 0 96px;
+  }
+
+  .section {
+    padding-top: 68px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    color: var(--accent-soft);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .section h2 {
+    font-size: clamp(2rem, 3vw, 2.75rem);
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+  }
+
+  .section .desc {
+    color: var(--text);
+    font-size: 15px;
+    max-width: 760px;
+    margin-bottom: 28px;
+    line-height: 1.8;
+  }
+
+  hr.section-line {
+    border: none;
+    border-top: 1px solid var(--line);
+    margin-bottom: 28px;
+  }
+
+  .card,
+  .persona-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-bottom: 18px;
+    position: relative;
+    box-shadow: 0 18px 50px rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(14px);
+  }
+
+  .card-accent {
+    position: absolute;
+    top: 0;
+    left: 24px;
+    width: 72px;
+    height: 3px;
+    border-radius: 999px;
+  }
+
+  .card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 8px;
+    margin-top: 10px;
+    letter-spacing: -0.02em;
+  }
+
+  .card .card-meta {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .field {
+    margin-bottom: 16px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 9px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .field textarea,
+  .field input[type="text"],
+  .matrix-table input[type="text"],
+  .annotation-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 14px;
+    padding: 14px 16px;
+    color: var(--white);
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    resize: vertical;
+    outline: none;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  }
+
+  .field textarea:focus,
+  .field input[type="text"]:focus,
+  .matrix-table input[type="text"]:focus,
+  .annotation-input:focus {
+    border-color: rgba(16, 163, 127, 0.45);
+    box-shadow: 0 0 0 4px rgba(16, 163, 127, 0.16);
+    background: #ffffff;
+  }
+
+  .field textarea::placeholder,
+  .field input::placeholder,
+  .matrix-table input::placeholder,
+  .annotation-input::placeholder {
+    color: var(--soft);
+    font-style: normal;
+  }
+
+  .field textarea { min-height: 88px; }
+  .field textarea.sm { min-height: 60px; }
+  .field textarea.lg { min-height: 118px; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.15s;
+    user-select: none;
+  }
+
+  .tag.can {
+    background: rgba(74, 222, 128, 0.12);
+    color: var(--green);
+    border-color: rgba(74, 222, 128, 0.24);
+  }
+
+  .tag.cannot {
+    background: rgba(251, 113, 133, 0.12);
+    color: var(--coral);
+    border-color: rgba(251, 113, 133, 0.24);
+  }
+
+  .priority-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 1fr;
+    gap: 1px;
+    background: var(--line);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .priority-row.header {
+    background: transparent;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .priority-cell {
+    background: rgba(255, 255, 255, 0.88);
+    padding: 14px 16px;
+    font-size: 13px;
+  }
+
+  .priority-row.header .priority-cell {
+    background: rgba(255, 255, 255, 0.72);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .priority-type {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 5px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .matrix-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+  }
+
+  .matrix-table th {
+    padding: 12px 14px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    background: rgba(255, 255, 255, 0.72);
+    font-family: 'IBM Plex Mono', monospace;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .matrix-table th:first-child {
+    border-left: 1px solid var(--line);
+    border-radius: 14px 0 0 14px;
+  }
+
+  .matrix-table th:last-child {
+    border-right: 1px solid var(--line);
+    border-radius: 0 14px 14px 0;
+  }
+
+  .matrix-table td {
+    padding: 14px;
+    font-size: 13px;
+    background: rgba(255, 255, 255, 0.88);
+    vertical-align: top;
+    line-height: 1.5;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .matrix-table tr td:first-child {
+    border-left: 1px solid var(--line);
+    border-radius: 14px 0 0 14px;
+  }
+
+  .matrix-table tr td:last-child {
+    border-right: 1px solid var(--line);
+    border-radius: 0 14px 14px 0;
+  }
+
+  .matrix-table input[type="text"],
+  .annotation-input {
+    background: rgba(248, 250, 252, 0.95);
+    padding: 12px 14px;
+    margin-top: 0;
+  }
+
+  .severity {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .sev-high { background: rgba(251, 113, 133, 0.14); color: #be123c; }
+  .sev-med { background: rgba(251, 191, 36, 0.16); color: #b45309; }
+  .sev-low { background: rgba(74, 222, 128, 0.14); color: #15803d; }
+
+  .turn {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+    padding: 18px 18px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid var(--line);
+    position: relative;
+  }
+
+  .turn.you {
+    background: linear-gradient(135deg, rgba(2, 132, 199, 0.08), rgba(255, 255, 255, 0.92));
+  }
+
+  .turn.aria {
+    background: linear-gradient(135deg, rgba(16, 163, 127, 0.09), rgba(255, 255, 255, 0.92));
+  }
+
+  .turn-role {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    width: 58px;
+    flex-shrink: 0;
+    padding-top: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .turn.you .turn-role { color: var(--teal); }
+  .turn.aria .turn-role { color: var(--accent-soft); }
+
+  .turn-content {
+    flex: 1;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  .turn-annotation {
+    margin-top: 10px;
+    padding: 12px 14px;
+    background: rgba(248, 250, 252, 0.92);
+    border-radius: 14px;
+    border: 1px solid rgba(52, 211, 153, 0.18);
+  }
+
+  .annotation-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+    margin-bottom: 5px;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .annotation-text {
+    font-size: 12.5px;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+  .persona-card {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .persona-header {
+    padding: 16px 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .persona-header.user {
+    background: rgba(56, 189, 248, 0.14);
+    color: var(--teal);
+  }
+
+  .persona-header.agent {
+    background: rgba(16, 163, 127, 0.14);
+    color: var(--accent-soft);
+  }
+
+  .persona-body { padding: 16px 20px; }
+
+  .persona-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 0;
+    font-size: 13px;
+    color: var(--text);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .persona-item:last-child { border-bottom: none; }
+  .persona-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+
+  .footer {
+    background: rgba(255, 255, 255, 0.84);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    padding: 44px 48px;
+    text-align: center;
+    backdrop-filter: blur(18px);
+    box-shadow: var(--shadow);
+  }
+
+  .footer p { color: var(--muted); font-size: 13px; margin-bottom: 6px; }
+
+  .footer .quote {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 16px;
+  }
+
+  .print-note {
+    background: linear-gradient(135deg, rgba(16, 163, 127, 0.1), rgba(255, 255, 255, 0.66));
+    border: 1px solid rgba(16, 163, 127, 0.2);
+    border-radius: 18px;
+    padding: 16px 18px;
+    margin: 24px 0;
+    font-size: 13px;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .step-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 800;
+    flex-shrink: 0;
+    box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.08);
+  }
+
+  @media (max-width: 900px) {
+    body { padding: 18px 16px 40px; }
+    .hero { padding: 52px 28px 40px; }
+    .content { padding: 12px 0 72px; }
+    .nav { top: 10px; }
+  }
+
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 2.5rem; }
+    .nav-inner { padding: 8px; }
+    .grid-2, .grid-3, .persona-grid { grid-template-columns: 1fr; }
+    .priority-row { grid-template-columns: 1fr; }
+    .priority-row.header { display: none; }
+    .card, .persona-card, .footer { padding-left: 20px; padding-right: 20px; }
+    .footer { padding-top: 32px; padding-bottom: 32px; }
+  }
+
+  @media print {
+    .nav { display: none; }
+    .section { page-break-inside: avoid; }
+    body {
+      background: white;
+      color: black;
+      padding: 0;
+    }
+    .hero,
+    .card,
+    .persona-card,
+    .footer {
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="pill">AX Design Toolkit</div>
+  <h1>Agentic Experience<br>Design Worksheets</h1>
+  <p>A beginner-friendly worksheet pack for designers exploring AX, built to introduce the fundamentals and give teams a shared starting point.</p>
+  <p style="font-size:14px; color: var(--dim); margin-top:6px;">Use these as a team — PM, ENG, and UX working from the same page.</p>
+  <div class="author">
+    <strong>Yuha Kim</strong> — AI Product Designer @ Salesforce
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#spec">01 Behavior Spec</a>
+    <a href="#questions">02 Question Map</a>
+    <a href="#matrix">03 Fallback Matrix</a>
+    <a href="#roleplay">04 Roleplay Deck</a>
+    <a href="#annotated">05 Annotated Conv.</a>
+  </div>
+</nav>
+
+<div class="content">
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- 01 AGENT BEHAVIOR SPEC -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section class="section" id="spec">
+  <div class="section-label">Worksheet 01</div>
+  <h2>Agent Behavior Spec</h2>
+  <p class="desc">Define who the agent is and what it does — before any conversation is written. This is the constitution. Limits are not constraints — they are design decisions.</p>
+  <hr class="section-line">
+
+  <div class="print-note">
+    <div class="step-badge" style="background: var(--purple); color: white;">!</div>
+    Write this before the golden path. If you can't fill in Limits clearly, you're not ready to design the conversation.
+  </div>
+
+  <div class="card">
+    <div class="card-accent" style="background: var(--purple);"></div>
+    <div class="card-meta">Agent Identity</div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label>Agent Name</label>
+        <input type="text" placeholder="e.g. Aria">
+      </div>
+      <div class="field">
+        <label>Context / Product</label>
+        <input type="text" placeholder="e.g. Healthcare scheduling assistant for Lakeview Clinic">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Core Goal — What is this agent actually for?</label>
+      <textarea class="sm" placeholder="Not 'book appointments' — what outcome are we designing toward? What does the user actually need to walk away with?"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Tone & Personality (3 words max)</label>
+      <input type="text" placeholder="e.g. Warm · Direct · Transparent">
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-accent" style="background: var(--green);"></div>
+      <div class="card-meta">CAN DO</div>
+      <div class="field">
+        <label>Capabilities</label>
+        <textarea placeholder="What can the agent do? List actions, not features. Be specific.&#10;— Ask clarifying questions&#10;— Check slot availability&#10;— Suggest visit types&#10;— Recommend escalation"></textarea>
+      </div>
+      <div class="field">
+        <label>Tools & Data Access</label>
+        <textarea class="sm" placeholder="What can the agent actually access in real time?&#10;— Scheduling API&#10;— Patient preference history"></textarea>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-accent" style="background: var(--coral);"></div>
+      <div class="card-meta">CANNOT DO — Hard Limits</div>
+      <div class="field">
+        <label>Never Do / Never Claim</label>
+        <textarea placeholder="What must the agent never do, say, or imply? These are non-negotiable.&#10;— Diagnose or recommend treatment&#10;— Confirm insurance in real time&#10;— Book without explicit confirmation&#10;— Ignore urgency signals"></textarea>
+      </div>
+      <div class="field">
+        <label>Unavailable Tools (Transparency Required)</label>
+        <textarea class="sm" placeholder="What looks like it should work — but doesn't? The agent must never overclaim these."></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-accent" style="background: var(--amber);"></div>
+    <div class="card-meta">Escalation Triggers</div>
+    <p style="font-size:13px; color:var(--lavender); margin-bottom:16px;">Under what conditions should the agent stop and involve a human? Define these explicitly — don't leave it to engineering defaults.</p>
+    <div class="grid-2">
+      <div class="field">
+        <label>Auto-Escalate When</label>
+        <textarea placeholder="e.g.&#10;— Symptom described as 'getting worse'&#10;— User expresses distress or frustration&#10;— Booking action fails after 2 attempts&#10;— User asks about legal or clinical advice"></textarea>
+      </div>
+      <div class="field">
+        <label>What the Handoff Looks Like</label>
+        <textarea placeholder="Script the handoff moment — what does the agent say? What information does it pass to the human? How does Maya know she's been handed off?"></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- 02 CLARIFICATION QUESTION MAP -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section class="section" id="questions">
+  <div class="section-label">Worksheet 02</div>
+  <h2>Clarification Question Priority Map</h2>
+  <p class="desc">For each user intent type — what is the single most important thing to ask first? Question priority is a design decision. If you ask the wrong question first, you've already lost the path.</p>
+  <hr class="section-line">
+
+  <div class="print-note">
+    <div class="step-badge" style="background: var(--amber); color: #3d2800;">Q</div>
+    Rule: One question per turn. Identify the single most critical unknown — ask only that. Everything else follows from the answer.
+  </div>
+
+  <div class="card">
+    <div class="card-accent" style="background: var(--amber);"></div>
+    <div class="card-meta">Intent Type Library</div>
+
+    <div class="priority-row header">
+      <div class="priority-cell">User Intent</div>
+      <div class="priority-cell">Question #1 (Most Critical)</div>
+      <div class="priority-cell">Why This First?</div>
+    </div>
+
+    <div id="intent-rows">
+      <div class="priority-row">
+        <div class="priority-cell">
+          <div class="priority-type">Booking</div>
+          <span style="font-size:12px; color:var(--lavender);">"I need to see someone"</span>
+        </div>
+        <div class="priority-cell">
+          <input type="text" class="annotation-input" placeholder="e.g. Is this time-sensitive, or do you have flexibility?" style="width:100%">
+        </div>
+        <div class="priority-cell">
+          <input type="text" class="annotation-input" placeholder="e.g. Urgency changes the entire path — slot options, visit type, escalation" style="width:100%">
+        </div>
+      </div>
+
+      <div class="priority-row">
+        <div class="priority-cell">
+          <div class="priority-type">Symptom</div>
+          <span style="font-size:12px; color:var(--lavender);">"I have a health issue"</span>
+        </div>
+        <div class="priority-cell">
+          <input type="text" class="annotation-input" placeholder="Your question here">
+        </div>
+        <div class="priority-cell">
+          <input type="text" class="annotation-input" placeholder="Reason this is first">
+        </div>
+      </div>
+
+      <div class="priority-row">
+        <div class="priority-cell">
+          <div class="priority-type">Coverage</div>
+          <span style="font-size:12px; color:var(--lavender);">"Will insurance cover this?"</span>
+        </div>
+        <div class="priority-cell">
+          <input type="text" class="annotation-input" placeholder="Your question here">
+        </div>
+        <div class="priority-cell">
+          <input type="text" class="annotation-input" placeholder="Reason this is first">
+        </div>
+      </div>
+
+      <div class="priority-row">
+        <div class="priority-cell">
+          <div class="priority-type">Reschedule</div>
+          <span style="font-size:12px; color:var(--lavender);">"I need to change my appointment"</span>
+        </div>
+        <div class="priority-cell">
+          <input type="text" class="annotation-input" placeholder="Your question here">
+        </div>
+        <div class="priority-cell">
+          <input type="text" class="annotation-input" placeholder="Reason this is first">
+        </div>
+      </div>
+
+      <div class="priority-row">
+        <div class="priority-cell">
+          <div class="priority-type">Custom</div>
+          <span style="font-size:12px; color:var(--dim);">Add your intent →</span>
+        </div>
+        <div class="priority-cell">
+          <input type="text" class="annotation-input" placeholder="Your question here">
+        </div>
+        <div class="priority-cell">
+          <input type="text" class="annotation-input" placeholder="Reason this is first">
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <div class="field">
+        <label>Question Anti-Patterns to Avoid</label>
+        <textarea class="sm" placeholder="e.g. Never ask for insurance before understanding urgency / Never ask 3 questions in one turn / Never assume 'soon' without asking for a timeline"></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- 03 FALLBACK & ESCALATION MATRIX -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section class="section" id="matrix">
+  <div class="section-label">Worksheet 03</div>
+  <h2>Fallback & Escalation Matrix</h2>
+  <p class="desc">Every cell is a design decision. What does the agent do when it hits a wall? "I'm sorry" is not a recovery path. Design the failure before the agent encounters it live.</p>
+  <hr class="section-line">
+
+  <div class="print-note">
+    <div class="step-badge" style="background: var(--coral); color: white;">!</div>
+    If a cell is blank, that failure state will be discovered in production. Fill every row before shipping.
+  </div>
+
+  <div class="card">
+    <div class="card-accent" style="background: var(--coral);"></div>
+    <div class="card-meta">Failure State Map</div>
+
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th style="width:20%">Failure Type</th>
+          <th style="width:12%">Severity</th>
+          <th style="width:34%">Agent Response (What it says)</th>
+          <th style="width:34%">Recovery Path (What it does next)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <div style="font-size:11px; font-weight:600; color:var(--coral); margin-bottom:4px;">TOOL FAILURE</div>
+            <div style="font-size:12px; color:var(--lavender);">Insurance verification unavailable</div>
+          </td>
+          <td><span class="severity sev-high">High</span></td>
+          <td><input type="text" placeholder='e.g. "I can't verify coverage right now — but I can connect you with our billing team who can confirm this before your visit."'></td>
+          <td><input type="text" placeholder="e.g. Offer alternatives: billing team contact, different covered clinic, telehealth option"></td>
+        </tr>
+        <tr>
+          <td>
+            <div style="font-size:11px; font-weight:600; color:var(--amber); margin-bottom:4px;">NO AVAILABILITY</div>
+            <div style="font-size:12px; color:var(--lavender);">No slots match user's constraints</div>
+          </td>
+          <td><span class="severity sev-high">High</span></td>
+          <td><input type="text" placeholder="Your response script"></td>
+          <td><input type="text" placeholder="Your recovery path"></td>
+        </tr>
+        <tr>
+          <td>
+            <div style="font-size:11px; font-weight:600; color:var(--amber); margin-bottom:4px;">AMBIGUOUS INTENT</div>
+            <div style="font-size:12px; color:var(--lavender);">Can't determine what user needs</div>
+          </td>
+          <td><span class="severity sev-med">Med</span></td>
+          <td><input type="text" placeholder="Your response script"></td>
+          <td><input type="text" placeholder="Your recovery path"></td>
+        </tr>
+        <tr>
+          <td>
+            <div style="font-size:11px; font-weight:600; color:var(--amber); margin-bottom:4px;">URGENCY SIGNAL</div>
+            <div style="font-size:12px; color:var(--lavender);">Worsening symptom + time pressure</div>
+          </td>
+          <td><span class="severity sev-high">High</span></td>
+          <td><input type="text" placeholder="Your response script"></td>
+          <td><input type="text" placeholder="Your recovery path"></td>
+        </tr>
+        <tr>
+          <td>
+            <div style="font-size:11px; font-weight:600; color:var(--teal); margin-bottom:4px;">OUT OF SCOPE</div>
+            <div style="font-size:12px; color:var(--lavender);">Request beyond agent's role</div>
+          </td>
+          <td><span class="severity sev-low">Low</span></td>
+          <td><input type="text" placeholder="Your response script"></td>
+          <td><input type="text" placeholder="Your recovery path"></td>
+        </tr>
+        <tr>
+          <td>
+            <div style="font-size:11px; font-weight:600; color:var(--teal); margin-bottom:4px;">BOOKING CONFLICT</div>
+            <div style="font-size:12px; color:var(--lavender);">Slot taken between check & confirm</div>
+          </td>
+          <td><span class="severity sev-med">Med</span></td>
+          <td><input type="text" placeholder="Your response script"></td>
+          <td><input type="text" placeholder="Your recovery path"></td>
+        </tr>
+        <tr>
+          <td>
+            <div style="font-size:11px; font-weight:600; color:var(--dim); margin-bottom:4px; text-transform:uppercase;">Custom</div>
+            <input type="text" placeholder="Add failure type" style="background:transparent; border:none; border-bottom:1px solid var(--line); color:var(--lavender); font-size:12px; width:100%; padding:2px 0; outline:none;">
+          </td>
+          <td>
+            <select style="background:var(--bg2); border:1px solid var(--line); color:var(--lavender); font-size:12px; padding:4px 6px; border-radius:4px; width:100%;">
+              <option>High</option>
+              <option>Med</option>
+              <option>Low</option>
+            </select>
+          </td>
+          <td><input type="text" placeholder="Your response script"></td>
+          <td><input type="text" placeholder="Your recovery path"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-accent" style="background: var(--teal);"></div>
+    <div class="card-meta">Escalation Decision Rules</div>
+    <div class="grid-2">
+      <div class="field">
+        <label>Escalate immediately when</label>
+        <textarea placeholder="List specific trigger conditions. Be concrete.&#10;e.g. User describes 'worsening' or 'severe' symptoms&#10;e.g. Two consecutive booking failures&#10;e.g. User expresses frustration (&gt;1 time)"></textarea>
+      </div>
+      <div class="field">
+        <label>The handoff script</label>
+        <textarea placeholder='Exact words the agent uses at handoff.&#10;e.g. "This sounds like something a person should help you with directly. I'm connecting you to our care team now — they have your context."'></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- 04 ROLEPLAY SCENARIO DECK -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section class="section" id="roleplay">
+  <div class="section-label">Worksheet 04</div>
+  <h2>Roleplay Scenario Deck</h2>
+  <p class="desc">Simulate the interaction from both sides — before any code is written. This is the cheapest design test available. Two people, two worksheets, one conversation. Find the gaps before engineering does.</p>
+  <hr class="section-line">
+
+  <div class="print-note">
+    <div class="step-badge" style="background: var(--teal); color: #0a2a2a;">→</div>
+    How to run: One person plays the user (fills out User card). One plays the agent designer (fills out Agent card). Run the conversation. Then compare notes on what surprised you.
+  </div>
+
+  <div class="persona-grid">
+    <!-- USER CARD -->
+    <div class="persona-card">
+      <div class="persona-header user">Maya / The User</div>
+      <div class="persona-body">
+        <div class="field" style="margin-bottom:12px;">
+          <label>Situation</label>
+          <textarea class="sm" placeholder="What's happening? What triggered this interaction?"></textarea>
+        </div>
+        <div class="field" style="margin-bottom:12px;">
+          <label>Urgency Level (circle one)</label>
+          <div class="tags">
+            <span class="tag can" onclick="this.style.background='rgba(94,200,158,0.3)'">Low — flexible</span>
+            <span class="tag" style="background:rgba(245,200,66,0.12); color:var(--amber); border-color:rgba(245,200,66,0.25);" onclick="this.style.background='rgba(245,200,66,0.3)'">Medium — this week</span>
+            <span class="tag cannot" onclick="this.style.background='rgba(242,123,110,0.3)'">High — before trip / event</span>
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:12px;">
+          <label>What You Will NOT Volunteer (unless asked)</label>
+          <textarea placeholder="The hidden context. Insurance uncertainty, time pressure, emotional state. Only reveal when the agent asks the right question."></textarea>
+        </div>
+        <div class="field" style="margin-bottom:12px;">
+          <label>What You Assume the Agent Can Do</label>
+          <textarea class="sm" placeholder="What does the user believe the AI is capable of? (These assumptions may be wrong.)"></textarea>
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label>Your Goal (the real one)</label>
+          <input type="text" placeholder="Not 'book an appointment' — what does success look like for you?">
+        </div>
+      </div>
+    </div>
+
+    <!-- AGENT CARD -->
+    <div class="persona-card">
+      <div class="persona-header agent">Aria / The Agent Designer</div>
+      <div class="persona-body">
+        <div class="field" style="margin-bottom:12px;">
+          <label>Your First Question (and only one)</label>
+          <textarea class="sm" placeholder="What is the single most important thing to ask first? Commit to it before the conversation starts."></textarea>
+        </div>
+        <div class="field" style="margin-bottom:12px;">
+          <label>Tools Available in This Scenario</label>
+          <div class="tags" style="margin-top:4px;">
+            <span class="tag can">Slot availability</span>
+            <span class="tag can">Visit type lookup</span>
+            <span class="tag cannot">Insurance verify (unavailable)</span>
+            <span class="tag cannot">Diagnosis</span>
+          </div>
+        </div>
+        <div class="field" style="margin-bottom:12px;">
+          <label>Your Escalation Trigger</label>
+          <input type="text" placeholder="At what exact moment will you escalate to a human?">
+        </div>
+        <div class="field" style="margin-bottom:12px;">
+          <label>Your Fallback if Primary Action Fails</label>
+          <textarea class="sm" placeholder="If the booking fails / coverage can't be confirmed / no slots match — what's the next designed move?"></textarea>
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label>Success Looks Like</label>
+          <input type="text" placeholder="How will you know the interaction succeeded?">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-accent" style="background: var(--dim);"></div>
+    <div class="card-meta">Post-Roleplay Debrief</div>
+    <div class="grid-2">
+      <div class="field">
+        <label>What surprised the agent designer?</label>
+        <textarea placeholder="What did the user reveal (or not reveal) that you didn't expect?"></textarea>
+      </div>
+      <div class="field">
+        <label>What surprised the user?</label>
+        <textarea placeholder="Where did the agent ask a question you weren't ready for? Where did it miss something obvious?"></textarea>
+      </div>
+    </div>
+    <div class="field">
+      <label>Design gaps identified</label>
+      <textarea placeholder="List the moments where the design broke down. These are your next design tasks."></textarea>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- 05 ANNOTATED CONVERSATION -->
+<!-- ══════════════════════════════════════════════════════ -->
+<section class="section" id="annotated">
+  <div class="section-label">Worksheet 05</div>
+  <h2>Annotated Conversation Walkthrough</h2>
+  <p class="desc">Take a real or hypothetical conversation and label every design decision — what the agent does, why, and what happens if it doesn't. This is how you test behavior design without code.</p>
+  <hr class="section-line">
+
+  <div class="print-note">
+    <div class="step-badge" style="background: var(--green); color: #0a2a0a;">★</div>
+    Pro tip: Run this on a conversation that already happened — from a prototype, a PoC, or a customer support log. The annotations expose gaps faster than any review meeting.
+  </div>
+
+  <div class="card">
+    <div class="card-accent" style="background: var(--green);"></div>
+    <div class="card-meta">Reference Scenario — Maya & Aria (Act 03: Well-Designed Version)</div>
+
+    <div class="turn you">
+      <div class="turn-role">Maya</div>
+      <div class="turn-content">
+        Hi, I have a skin rash that's been getting worse. I'd like to book an appointment.
+        <div class="turn-annotation">
+          <div class="annotation-label">What the user brings (unsaid)</div>
+          <div class="annotation-text">Leaves on a trip in 3 days. Unsure about insurance. Prefers mornings. Wants to be done in one interaction.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="turn aria">
+      <div class="turn-role">Aria</div>
+      <div class="turn-content">
+        Happy to help. One quick question first — is this time-sensitive, or do you have some flexibility on timing?
+        <div class="turn-annotation">
+          <div class="annotation-label" style="color: var(--green);">Design decision: Intent first (F01)</div>
+          <div class="annotation-text">Asked about urgency before running any process. One question. Redirected the entire path. If Maya says "urgent" → triggers parallel insurance + slot check. If "flexible" → standard flow.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="turn you">
+      <div class="turn-role">Maya</div>
+      <div class="turn-content">I'm leaving on a work trip in three days, so I really need to go before then.</div>
+    </div>
+
+    <div class="turn aria">
+      <div class="turn-role">Aria</div>
+      <div class="turn-content">
+        Got it — I'll find you something in the next two days. What's your insurance provider? I'll check coverage and slots at the same time.
+        <div class="turn-annotation">
+          <div class="annotation-label" style="color: var(--green);">Design decision: Parallel processing (F02)</div>
+          <div class="annotation-text">Insurance verification and slot availability run simultaneously. Reduces total interaction time. Agent is transparent about what it's doing ("at the same time").</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="turn aria">
+      <div class="turn-role">Aria</div>
+      <div class="turn-content">
+        Before I confirm: City Clinic, tomorrow at 8 AM, covered under United Health. Should I go ahead?
+        <div class="turn-annotation">
+          <div class="annotation-label" style="color: var(--green);">Design decision: Confirm before acting (F04)</div>
+          <div class="annotation-text">Full summary before execution. Explicit confirmation required. If Maya says no → back to options without losing context.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="turn aria">
+      <div class="turn-role">Aria</div>
+      <div class="turn-content">
+        Booked. Confirmation sent to your phone. If anything changes, just come back here — I can reschedule or explore telehealth if needed.
+        <div class="turn-annotation">
+          <div class="annotation-label" style="color: var(--green);">Design decision: Recovery built in (F05)</div>
+          <div class="annotation-text">Fallback channel opened proactively — before Maya even thinks to ask. The recovery path is a feature, not an afterthought.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <div class="card-accent" style="background: var(--dim);"></div>
+    <div class="card-meta">Your Conversation — Annotate It</div>
+    <p style="font-size:13px; color:var(--lavender); margin-bottom:20px;">Paste or write a conversation below. For each agent turn, add an annotation: what design decision is this? What happens if it's missing?</p>
+
+    <div id="convo-rows">
+      <div class="turn you" style="margin-bottom:4px;">
+        <div class="turn-role">User</div>
+        <div class="turn-content" style="flex:1;">
+          <textarea class="annotation-input" style="width:100%; min-height:52px; font-size:14px; resize:vertical;" placeholder="User message..."></textarea>
+        </div>
+      </div>
+      <div class="turn aria" style="margin-bottom:4px;">
+        <div class="turn-role">Agent</div>
+        <div class="turn-content" style="flex:1;">
+          <textarea class="annotation-input" style="width:100%; min-height:52px; font-size:14px; resize:vertical;" placeholder="Agent response..."></textarea>
+          <div class="turn-annotation" style="margin-top:8px;">
+            <div class="annotation-label">Design decision / what this achieves</div>
+            <input class="annotation-input" type="text" placeholder="Label the design choice here. If you can't name it, it wasn't designed.">
+          </div>
+        </div>
+      </div>
+      <div class="turn you" style="margin-bottom:4px;">
+        <div class="turn-role">User</div>
+        <div class="turn-content" style="flex:1;">
+          <textarea class="annotation-input" style="width:100%; min-height:52px; font-size:14px; resize:vertical;" placeholder="User response..."></textarea>
+        </div>
+      </div>
+      <div class="turn aria" style="margin-bottom:4px;">
+        <div class="turn-role">Agent</div>
+        <div class="turn-content" style="flex:1;">
+          <textarea class="annotation-input" style="width:100%; min-height:52px; font-size:14px; resize:vertical;" placeholder="Agent response..."></textarea>
+          <div class="turn-annotation" style="margin-top:8px;">
+            <div class="annotation-label">Design decision / what this achieves</div>
+            <input class="annotation-input" type="text" placeholder="Label the design choice here.">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;">
+      <div class="field">
+        <label>Failure modes identified in this conversation</label>
+        <textarea placeholder="Which of the six failure modes appear? F1 (wrong sequence) / F2 (acted without confirming) / F3 (no fallback) / F4 (assumed without gathering) / F5 (personality masked gap) / F6 (escalation too late)"></textarea>
+      </div>
+      <div class="field">
+        <label>What the conversation would need to be well-designed</label>
+        <textarea placeholder="List the specific design changes. Be concrete. These become your next behavior spec updates."></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="quote">"Before you design the words — design the work."</div>
+  <p>AX Design Worksheet Pack · Shared from Cornell CUXD Guest Lecture</p>
+  <p style="margin-top:6px;">Yuha Kim · Product Designer · <span style="color:var(--purple-light);">linkedin.com/in/yuha-kim</span></p>
+  <p style="margin-top:16px; font-size:12px; color:var(--dimmer);">These worksheets are for practitioner use — adapt freely. If you find them useful, share forward.</p>
+</div>
+
+</body>
+</html>
